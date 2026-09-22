@@ -8,6 +8,22 @@ A página original, datada de 2012, é uma home única e estática. O conteúdo 
 
 A estrutura é uma coluna central de largura fixa. Não há imagens, hierarquia visual entre seções nem adaptação para telas menores. O próprio código marca as escolhas como práticas ruins de propósito: contraste ilegível, container rígido e marcação sem semântica.
 
+## Três falhas graves
+
+Estas três quebram o uso da página. As demais, listadas em seguida, pioram a leitura, mas não impedem sozinhas que alguém entenda a oferta ou conclua um pedido.
+
+### 1. Contraste ilegível
+
+O fundo é `#111111` e o texto do corpo é `#333333`. Títulos usam `#555555` e links `#777777`. Texto escuro sobre fundo escuro fica abaixo do mínimo de contraste para texto comum (WCAG 2.2, critério 1.4.3, razão 4.5:1). Na prática a home não se lê: o visitante não distingue serviços, preço “a combinar” nem o pedido de orçamento. Um redesign só se justifica se a informação principal voltar a ser visível.
+
+### 2. Largura fixa, sem viewport
+
+O conteúdo está em um bloco de `1200px`, sem `meta viewport`. Em um celular a página não se reflow: o navegador reduz o documento inteiro ou abre rolagem horizontal. Menu, parágrafos e campos do formulário saem da área útil. A maior parte do acesso a um serviço local acontece no telefone, então a página falha justamente no dispositivo em que o cliente tentaria chamar no WhatsApp ou preencher o orçamento.
+
+### 3. Formulário que nunca envia
+
+O único caminho de conversão é o pedido de orçamento. O `submit` chama `alert('Erro no servidor!...')` e retorna `false`. Não há validação, os rótulos não estão ligados aos campos (`for`/`id`) e o botão usa cinza `#666` sobre `#333`. O visitante preenche nome e telefone e recebe um erro falso. A ação de negócio da página está bloqueada.
+
 ## Falhas mapeadas
 
 | Área | O que o site antigo faz | Efeito |
